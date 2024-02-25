@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-class DynamicArray{
+class DynamicArray
+{
     private:
         void resizeArray();
         int *array;
@@ -29,11 +30,7 @@ class DynamicArray{
 	    }
     
     public:
-       // append_element(int element);
-       // get_element_at_index(int index);
-        //size();
-       // reset();
-
+       
         //constructor
         DynamicArray()
 	    {
@@ -43,11 +40,13 @@ class DynamicArray{
 	    }
 
         int getSize() {
-             return size; }
+             return size; 
+        }
 
 	    // Returns the size of container
 	    int getTotal() { 
-            return total; }
+            return total; 
+        }
 
        
 
@@ -56,11 +55,10 @@ class DynamicArray{
         // Inserting element after last stored index
         void append_element(int element) //push_back(int value)
         {
-            // check is array having size to store element or
-            // not
+            // check is array having size to store element or not
             if (size == total) {
 
-                // if not then grow the array by double
+                // if not then grow the array by one
                 growArray();
             }
 
@@ -72,19 +70,20 @@ class DynamicArray{
             // Searching element in the given array
         int get_element_at_index(int index)//search(int y)
         {
-            for (int i = 0; i < size; i++) {
-                if (array[i] == index) {
-                    // If element found return its index
-                    return i;
-                }
+            int var;
+            var = array[index];
+
+            if(var != -1){
+                return var;
             }
 
-            // element not found;
-            return 0;
+            else{
+                return 0;
+            }
         }
 
-        
-        // To Print Array
+       
+        // Print
         void Size()
         {
             cout << "Elements of array : ";
@@ -92,20 +91,27 @@ class DynamicArray{
                 cout << array[i] << " ";
             }
             cout << endl;
-            cout << "No of elements in array : " << size
-                << ", Capacity of array :" << total << endl;
+            cout << " Total elements in array : " << size
+                << ", Capacity:" << total << endl;
         }
 
         void reset(){
            
-            //int *temp = new int[0];
-            //array = temp;
-            //delete[1] array;
-
-            //int *array = temp;
-            //delete[] temp;
-
-           // sizze();
+           //remove elements by resizung array 
+            while(total > 0)
+            {
+            for (int i = 0; i < total; i++) {
+                    array[i] = array[i + 1];
+                    cout << total << " ";
+            } 
+    
+                // last index is 0
+                array[size - 1] = 0;
+                size--;
+                total--;
+            }
+            cout << "\narray is reset";
+       
 
         }
 
@@ -113,7 +119,7 @@ class DynamicArray{
 
 };
 
-
+//Driver
 int main()
 {
     DynamicArray arr;
@@ -124,9 +130,17 @@ int main()
     arr.append_element(87);
 
     arr.Size();
-   // arr.reset();
+   
+    arr.reset();
+    arr.Size();
+    arr.append_element(1);
+    arr.append_element(2);
+    arr.append_element(99);
+    //arr.append_element(87);
+    arr.Size();
+
+    cout << "\n" << arr.get_element_at_index(5);
+    cout <<"\n" << arr.get_element_at_index(1);
    // arr.Size();
-
-
-
+    
 }
